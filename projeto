@@ -29,7 +29,7 @@ while True:
                 print(f'\nBem-vindo ADMIN:{login}')
                         #VER CADASTROS PACIENTES 
                 print('\n1 - VER CADASTRO PACIENTES')
-                print('\n2 - GESTÃO DE DENTISTAS')        
+                print('2 - GESTÃO DE DENTISTAS')        
                 opcao_admin= input('\nEscolha ou Digite 0 para MENU:')
                 if opcao_admin == '0':
                     print('Voltando.')
@@ -42,24 +42,29 @@ while True:
                 elif opcao_admin == '2':
                     print('\nGESTÃO DE DENSTISTAS...')
                     print('\n1 - Cadastrar Dentista')
-                    print('2 - listar Dentistas')      
-                    print('3 - Buscar Dentista')
-                    print('4 - Atualizar Dentista')
-                    print('5 - Excluir Dentista')
-                    print('0 - Sair')
+                    print('\n2 - listar Dentistas')      
+                    print('\n3 - Buscar Dentista(NAO FEITO)')
+                    print('\n4 - Atualizar Dentista(NAO FEITO)')
+                    print('\n5 - Excluir Dentista(NAO FEITO)')
+                    print('\n0 - Sair')
                     opcao3 = input('Escolha uma opção ou 0 para sair:')
                     if opcao3 == '0':
                         print('Voltando ao menu.')
                         break
                     elif opcao3 == '1':
-                        dent_id = input('Digite o seu ID:').strip()
-                        dent_nome = input('Digite o seu Nome:').lower().strip()
-                        dent_CRO = input('Digite o seu CRO:').lower().strip()
-                        dent_espec = input('Digite sua Especialidade:').lower().strip()
-                        dentistas.append([dent_id , dent_nome , dent_CRO , dent_espec])
-                        print(dentistas)
+                        while True:
+                            dent_id = input('Digite o seu ID:').strip().isdigit()
+                            if dent_id == False:
+                                print('Digite apenas numeros!')
+                                continue
+                            dent_nome = input('Digite o seu Nome:').lower().strip()
+                            dent_CRO = input('Digite o seu CRO:').lower().strip()
+                            dent_espec = input('Digite sua Especialidade:').lower().strip()
+                            dentistas.append([dent_id , dent_nome , dent_CRO , dent_espec])
+                            print('Dentista Cadastrado com sucesso!')
+                            break
                     elif opcao3 == '2':
-                        print('vai tomar no cu')
+                        print(f'Dentista:{dentistas[0]}')
                     
         
 
