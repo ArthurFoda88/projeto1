@@ -36,14 +36,17 @@ while True:
                     break
                 elif opcao_admin == '1':
                     print('PACIENTES:')
-                    print(pacientes)       
+                    print(pacientes)     
+
+                        #DENTISTAS
                 elif opcao_admin == '2':
                     print('\nGESTÃO DE DENSTISTAS...')
-                    print('1 - Cadastrar Dentista')
+                    print('\n1 - Cadastrar Dentista')
                     print('2 - listar Dentistas')      
                     print('3 - Buscar Dentista')
                     print('4 - Atualizar Dentista')
                     print('5 - Excluir Dentista')
+                    print('0 - Sair')
                     opcao3 = input('Escolha uma opção ou 0 para sair:')
                     if opcao3 == '0':
                         print('Voltando ao menu.')
@@ -54,8 +57,11 @@ while True:
                         dent_CRO = input('Digite o seu CRO:').lower().strip()
                         dent_espec = input('Digite sua Especialidade:').lower().strip()
                         dentistas.append([dent_id , dent_nome , dent_CRO , dent_espec])
-
-                        
+                        print(dentistas)
+                    elif opcao3 == '2':
+                        print('vai tomar no cu')
+                    
+        
 
             # CADASTRO PACIENTE
     elif opcao == '2':
