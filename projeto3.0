@@ -1,0 +1,210 @@
+admins = [['arthur', '1234'], ['secretaria', 'abcd'], ['1', '1']]
+pacientes = [['1','1','1']]
+dentistas = [['12590122','arthur sabino', '1259012','endodentia'],['96329622', 'pedro albuquerque', '528952','ortodentia']]
+consultas = []
+while True:
+    print('=== CLÍNICA ODONTOLÓGICA ===')
+    print('1 - Administrador')
+    print('2 - Paciente')
+    print('0 - Sair')
+
+    opcao = input('Escolha: ')
+    if opcao == '0':
+        break
+    elif opcao == '1':
+        logado = False  
+        while True:
+            login = input('\nDigite o login de admin: (0 para sair:)').lower()
+            if login == '0':
+                break
+            senha = input('Digite a senha de admin:').lower()
+            for a in admins:
+                if login == a[0] and senha == a[1]:
+                    logado = True
+            if logado:
+                break
+            print('Login ou senha incorretos!')
+        if logado:
+            while True:
+                print('\n==== MENU ADMINISTRADOR ====')
+                print(f'\nBem-vindo ADMIN:{login}')
+                        #VER CADASTROS PACIENTES 
+                print('\n1 -VER CADASTRO PACIENTES')
+                print('\n2 - ADMINISTRAR DENTISTAS')        
+                opcao_admin= input('\nEscolha ou Digite 0 para MENU:')
+                if opcao_admin == '0':
+                    print('Voltando.')
+                    break
+                elif opcao_admin == '1':
+                    print('PACIENTES:')
+                    print(pacientes)     
+
+                        #DENTISTAS
+                elif opcao_admin == '2':
+                 while True:
+                    print('\nGESTÃO DE DENSTISTAS...')
+                    print('\n1 - Cadastrar Dentista')
+                    print('2 - listar Dentistas')      
+                    print('3 - Buscar Dentista()')
+                    print('4 - Atualizar Dentista()')
+                    print('5 - Excluir Dentista()')
+                    print('0 - Sair')
+                    opcao3 = input('Escolha uma opção ou 0 para sair:')
+                    if opcao3 == '0':
+                        print('Voltando ao menu.')
+                        break
+                    elif opcao3 == '1':
+                        while True:
+                            dent_id = input('Digite o seu ID:').strip()
+                            if not dent_id.isdigit():
+                                print('Digite apenas numeros!')
+                                continue
+                            dent_nome = input('Digite o seu Nome:').lower().strip()
+                            dent_CRO = input('Digite o seu CRO:').lower().strip()
+                            dent_espec = input('Digite sua Especialidade:').lower().strip()
+                            dentistas.append([dent_id , dent_nome , dent_CRO , dent_espec])
+                            print('Dentista Cadastrado com sucesso!')
+                            break
+                    elif opcao3 == '2':
+                        print('\nINFORMAÇÕES DO DENTISTA:')
+                        for d in dentistas:
+                            print('\n========================')
+                            print(f'ID Dentista:{d[0]}') 
+                            print(f'Nome do dentista:{d[1]}')
+                            print(f'CRO do dentista:{d[2]}')
+                            print(f'Especialização do dentista:{d[3]}')
+                    elif opcao3 == '3':
+                        print('\nDentistas Cadastrados:')
+                        for d in dentistas:
+                            print(d[1])
+                        busca = input('Digite qual dentista você quer buscar:').lower()
+                        encontrado = False
+
+                        for d in dentistas:
+                            if d[0] == busca or d[1] == busca or d[2] == busca or d[3] == busca:
+                                print('\n=============================')
+                                print(f'Mostrando informações de: {busca}:')
+                                print(f'ID:{d[0]}')
+                                print(f'Nome:{d[1]}')
+                                print(f'\nCRO:{d[2]}')
+                                print(f'\nEspecialidade:{d[3]}')
+                                encontrado = True
+                                break
+                        if encontrado == False:
+                            print('Dentista não encontrado.')
+                                                                                     
+                             
+
+            # CADASTRO PACIENTE
+    elif opcao == '2':
+       while True:
+        print('\n==== MENU PACIENTE ====')
+        print('1- Realizar Login/Cadastro')
+        print('0 - Sair')
+        opcao_paciente = input('Escolha:')
+        if opcao_paciente == '0':
+            print('Voltando ao menu inicial.')
+            break
+        elif opcao_paciente == '1':
+            cpf = input('Digite seu CPF:').strip()
+            if not cpf.isdigit():
+                print('Digite apenas numeros.')
+                continue
+            existe = False
+            for p in pacientes:
+                if p[1] == cpf:
+                    existe = True
+                    break
+            if existe:
+                    senha2 = input('Digite sua senha ou 0 para sair:').strip()
+                    if senha2 == '0':
+                        print('Voltando ao menu.')
+                        break
+                    elif p[2] == senha2:
+                        print('Login realizado com sucesso!')
+                        while True:
+                            print(f'\n=====Corpo Clínico: {p[0]}======')
+                            print('1 - Listar Dentistas')
+                            print('2 - Agendar Consulta')
+                            print('3 - Minhas Consultas')
+                            print('4 - Cancelar Consulta')
+                            print('0 - Sair')
+                            opcao4 = input('Escolha uma opção ou 0 para sair:')
+                            if opcao4 == '0':
+                                print('Voltando ao menu.')
+                                break
+                            elif opcao4 == '1':
+                                print('INFORMAÇÕES DO DENTISTAS:')
+                                print('\n=====================')
+                                for d in dentistas:
+                                    print(f'ID:{d[0]} | Dentista:{d[1]} | CRO:{d[2]} | Especialidade:{d[3]}')
+                                                    #AGENDAR CONSULTA
+                            elif opcao4 == '2':
+                                print('\n==== AGENDAR CONSULTA ====')
+                                print('\n Dentistas disponiveis:', len(dentistas))
+                                while True:
+                                    for d in dentistas:
+                                        print(f'ID:{d[0]} | Dentista:{d[1]} | Especialidade:{d[3]}')
+                                    agendar_dentista = input('\nDigite o nome do Dentista que você deseja uma consulta:').lower()
+                                    if agendar_dentista == '0':
+                                        print('Voltando ao Corpo Clinico..')
+                                        break
+                                    encontrado = False
+                                    for d in dentistas:
+                                        if agendar_dentista == d[1]:
+                                            encontrado = True
+                                            break
+                                    if encontrado == False:
+                                        print(f'\nNão encontramos nenhum dentista com nome {agendar_dentista}, tente novamente ou 0 para Sair.\n')
+                                        continue
+                                    agendar_dia = input('Digite o dia da consulta:').strip()
+                                    agendar_hora = input('Digite o horario da consulta:').strip()
+                                    consultas.append([agendar_dentista, agendar_dia, agendar_hora])
+                                    print(f'\nConsulta agendada para Dentista {agendar_dentista} no dia {agendar_dia} horario {agendar_hora}.')
+                                    break
+                            elif opcao4 == '3':
+                                    if len(consultas) == 0:
+                                        print('\nVocê não tem consulta marcada.')
+                                    else:
+                                        for c in consultas:
+                                            print('\n============================================================================')
+                                            print(f'Consultas:{len(consultas)}')
+                                            print(f'Dentista:{c[0]} | Data:{c[1]} | Horário{c[2]} | Especialidade:{d[3]}') 
+                            elif opcao == '4':
+                                for i in range(len(consultas)):
+                                    print(f'{i + 1} - {consultas[i]}')
+                                
+
+                    else:
+                        print('Senha incorreta! tente novamente')        
+            else:
+                while True:
+                    cad = input('CPF não encontrado. Deseja se cadastrar? S/N:').lower().strip()
+                    cadastrado = False
+                    if cad == 'n' or cad == 'nao':
+                        print('Encerrando Cadastro.')
+                        break
+                    elif cad == 's' or cad == 'sim':
+                        nome = input('Digite seu nome completo:').lower()
+                        while True:
+                            cpf = input('Digite seu CPF:').strip()
+                            if not cpf.isdigit() or len(cpf) != 11:
+                                print('CPF invalido, Digite 11 numeros.')
+                                continue
+                            break
+                        senha2 = input('Digite sua senha:').strip()
+                        while True:
+                            telefone = input('Digite seu telefone:').strip()
+                            if not telefone.isdigit() or len(telefone) != 11:
+                                print('Telefone invalido, tente novamente EX: XX XXXXXXXXX')
+                                continue
+                            break
+                        pacientes.append([nome, cpf, senha2, telefone])
+                        print('Cadastro realizado com sucesso!')
+                        cadastrado = True
+                        break              
+                
+                    else:
+                        print('Digite Sim ou Não.')                       
+    else:
+        print('\nDigite uma opção válida.')
