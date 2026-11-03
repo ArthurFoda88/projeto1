@@ -136,7 +136,7 @@ while True:
                                             print(f'NOME: {p[0]}')
                                             print(f'NOVO CPF: {p[1]}')
                                             break
-                                        elif certeza3 == 'n' or certeza == 'nao' or certeza3 == 'não':
+                                        elif certeza3 == 'n' or certeza3 == 'nao' or certeza3 == 'não':
                                             continue
                                         break
                                 elif opcao_atualizar2 == '3':
